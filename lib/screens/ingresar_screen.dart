@@ -8,7 +8,10 @@ class IngresarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Nueva factura')),
+      ),
       body: Center(
         child: Text('IngresarScreen'),
       ),
