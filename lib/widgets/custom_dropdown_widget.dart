@@ -18,8 +18,10 @@ class CustomDropdownWidget extends StatefulWidget {
 
 class _CustomDropdownWidgetState extends State<CustomDropdownWidget> {
   String _chosenValue = 'Ventas';
+
   @override
   Widget build(BuildContext context) {
+    widget.formValues[widget.formProperty] = _chosenValue;
     return DropdownButton<String>(
       value: _chosenValue,
       icon: const Icon(Icons.arrow_drop_down),
@@ -31,6 +33,7 @@ class _CustomDropdownWidgetState extends State<CustomDropdownWidget> {
       onChanged: (String? newValue) {
         setState(() {
           _chosenValue = newValue!;
+          widget.formValues[widget.formProperty] = _chosenValue;
         });
       },
       items: widget.items.map<DropdownMenuItem<String>>((String value) {
