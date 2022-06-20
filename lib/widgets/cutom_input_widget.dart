@@ -1,8 +1,10 @@
+import 'package:facuturas_registro/helper/input_helper.dart';
 import 'package:facuturas_registro/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CustomInput extends StatelessWidget {
-  const CustomInput({
+class CustomInputWidget extends StatelessWidget {
+  const CustomInputWidget({
     Key? key,
     this.suffixIcon,
     this.labelText,
@@ -26,9 +28,18 @@ class CustomInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _controller = TextEditingController();
+    final inputHelper = Provider.of<InputHelper>(context);
+    if (inputHelper.clearInput) {
+      _controller.clear();
+      // setState(() {});
+      inputHelper.clearInput = false;
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: TextFormField(
+        controller: _controller,
         maxLines: maxLines,
         initialValue: initialValue,
         onChanged: (value) => {

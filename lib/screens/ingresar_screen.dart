@@ -1,5 +1,9 @@
+import 'dart:math';
+
+import 'package:facuturas_registro/helper/input_helper.dart';
 import 'package:facuturas_registro/models/models.dart';
 import 'package:facuturas_registro/providers/provider.dart';
+import 'package:facuturas_registro/themes/app_theme.dart';
 import 'package:facuturas_registro/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,8 +23,24 @@ class IngresarScreen extends StatelessWidget {
     }
   }
 
+  //generate int random number between 1 and 10000
+  static int generateRandomNumber() {
+    return Random().nextInt(10000) + 1;
+  }
+
+  //show snackbar with message
+  static void showSnackbar(BuildContext context, String message) {
+    final snackBar = SnackBar(
+      backgroundColor: AppTheme.secondary,
+      content: Text(message, style: const TextStyle(color: Colors.white)),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final inputHelper = Provider.of<InputHelper>(context, listen: false);
+
     final formIngresar = Provider.of<FormIngresarProvider>(context);
     final facturaProvider =
         Provider.of<FacturaProvider>(context, listen: false);
@@ -36,7 +56,7 @@ class IngresarScreen extends StatelessWidget {
               );
 
               final factura = FacturaModel(
-                id: 0,
+                id: generateRandomNumber(),
                 fecha: formIngresar.formValues['fecha']!,
                 proveedor: proveedor,
                 categoria: formIngresar.formValues['categoria']!,
@@ -44,6 +64,13 @@ class IngresarScreen extends StatelessWidget {
               );
 
               facturaProvider.addFactura(factura);
+              //Hide keyboard
+              FocusScope.of(context).requestFocus(FocusNode());
+              //Empty inputs
+              inputHelper.clearInputs();
+              inputHelper.clearInput = false;
+              //Show snackbar
+              showSnackbar(context, 'Factura ingresada.');
             }
           },
           child: const Icon(Icons.add),
@@ -58,35 +85,36 @@ class IngresarScreen extends StatelessWidget {
             key: formIngresar.formKey,
             child: Column(
               children: [
-                CustomInput(
+                CustomInputWidget(
                   maxLines: 1,
                   formProperty: 'fecha',
                   formValues: formIngresar.formValues,
                   labelText: 'Fecha',
                   hintText: 'Fecha de la factura',
                 ),
-                CustomInput(
+                CustomInputWidget(
                   maxLines: 1,
                   formProperty: 'proveedorNombre',
                   formValues: formIngresar.formValues,
                   labelText: 'Proveedor',
                   hintText: 'Nombre del proveedor',
                 ),
-                CustomInput(
+                CustomInputWidget(
                   maxLines: 1,
                   formProperty: 'proveedorNit',
                   formValues: formIngresar.formValues,
                   labelText: 'Nit',
                   hintText: 'Nit del proveedor',
                 ),
-                CustomInput(
+                CustomInputWidget(
                   maxLines: 1,
                   formProperty: 'categoria',
                   formValues: formIngresar.formValues,
                   labelText: 'Categoria',
                   hintText: 'Categoria de la factura',
+                  validator: false,
                 ),
-                CustomInput(
+                CustomInputWidget(
                   maxLines: 1,
                   formProperty: 'total',
                   formValues: formIngresar.formValues,

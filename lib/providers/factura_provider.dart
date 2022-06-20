@@ -13,4 +13,12 @@ class FacturaProvider extends ChangeNotifier {
     facturas.remove(factura);
     notifyListeners();
   }
+
+  //update factura
+  void updateFactura(FacturaModel factura) {
+    final index =
+        facturas.indexWhere((facturaModel) => facturaModel.id == factura.id);
+    facturas[index] = factura;
+    notifyListeners();
+  }
 }

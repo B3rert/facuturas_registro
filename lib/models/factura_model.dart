@@ -5,13 +5,13 @@ class FacturaModel {
     required this.id,
     required this.fecha,
     required this.proveedor,
-    required this.categoria,
+    this.categoria,
     required this.total,
   });
 
   int id;
   String fecha;
   ProveedorModel proveedor;
-  String categoria;
+  String? categoria;
   double total;
 }

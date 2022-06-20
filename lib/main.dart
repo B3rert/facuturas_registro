@@ -1,3 +1,4 @@
+import 'package:facuturas_registro/helper/input_helper.dart';
 import 'package:facuturas_registro/routes/app_routes.dart';
 import 'package:facuturas_registro/themes/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => FormIngresarProvider()),
         ChangeNotifierProvider(create: (_) => FacturaProvider()),
+        ChangeNotifierProvider(create: (_) => InputHelper()),
       ],
       child: const MyApp(),
     );
