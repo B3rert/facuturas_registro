@@ -86,8 +86,7 @@ class IngresarScreen extends StatelessWidget {
             key: formIngresar.formKey,
             child: Column(
               children: [
-                CustomInputWidget(
-                  maxLines: 1,
+                CustomInputDateWidget(
                   formProperty: 'fecha',
                   formValues: formIngresar.formValues,
                   labelText: 'Fecha',

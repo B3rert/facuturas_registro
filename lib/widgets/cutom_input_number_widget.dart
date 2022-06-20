@@ -31,7 +31,6 @@ class CustomInputNumberWidget extends StatelessWidget {
     final inputHelper = Provider.of<InputHelper>(context);
     if (inputHelper.clearInput) {
       _controller.clear();
-      // setState(() {});
       inputHelper.clearInput = false;
     }
 
