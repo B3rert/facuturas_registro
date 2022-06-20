@@ -4,6 +4,7 @@ import 'package:facuturas_registro/helper/input_helper.dart';
 import 'package:facuturas_registro/models/models.dart';
 import 'package:facuturas_registro/providers/provider.dart';
 import 'package:facuturas_registro/themes/app_theme.dart';
+import 'package:facuturas_registro/widgets/cutom_input_number_widget.dart';
 import 'package:facuturas_registro/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -114,7 +115,7 @@ class IngresarScreen extends StatelessWidget {
                   hintText: 'Categoria de la factura',
                   validator: false,
                 ),
-                CustomInputWidget(
+                CustomInputNumberWidget(
                   maxLines: 1,
                   formProperty: 'total',
                   formValues: formIngresar.formValues,
