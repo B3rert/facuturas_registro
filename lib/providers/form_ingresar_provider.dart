@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class FormIngresarProvider extends ChangeNotifier {
   final Map<String, String> formValues = {
+    'tipo': '',
     "fecha": "",
     "proveedorNombre": "",
     "proveedorNit": "",

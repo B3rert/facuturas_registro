@@ -4,6 +4,7 @@ import 'package:facuturas_registro/helper/input_helper.dart';
 import 'package:facuturas_registro/models/models.dart';
 import 'package:facuturas_registro/providers/provider.dart';
 import 'package:facuturas_registro/themes/app_theme.dart';
+import 'package:facuturas_registro/widgets/custom_dropdown_widget.dart';
 import 'package:facuturas_registro/widgets/cutom_input_number_widget.dart';
 import 'package:facuturas_registro/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,7 @@ class IngresarScreen extends StatelessWidget {
 
               final factura = FacturaModel(
                 id: generateRandomNumber(),
+                tipo: formIngresar.formValues['tipo']!,
                 fecha: formIngresar.formValues['fecha']!,
                 proveedor: proveedor,
                 categoria: formIngresar.formValues['categoria']!,
@@ -77,7 +79,19 @@ class IngresarScreen extends StatelessWidget {
           child: const Icon(Icons.add),
         ),
         appBar: AppBar(
-          title: const Center(child: Text('Nueva factura')),
+          //Add title add dropdown together with input
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text('Tipo:'),
+              const SizedBox(width: 20),
+              CustomDropdownWidget(
+                formProperty: "tipo",
+                formValues: formIngresar.formValues,
+                items: const ["Ventas", "Compras"],
+              ),
+            ],
+          ),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -86,12 +100,21 @@ class IngresarScreen extends StatelessWidget {
             key: formIngresar.formKey,
             child: Column(
               children: [
+                const Text(
+                  "Ingresar factura",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 30),
                 CustomInputDateWidget(
                   formProperty: 'fecha',
                   formValues: formIngresar.formValues,
                   labelText: 'Fecha',
                   hintText: 'Fecha de la factura',
                 ),
+                const SizedBox(height: 10),
                 CustomInputWidget(
                   maxLines: 1,
                   formProperty: 'proveedorNombre',
@@ -99,6 +122,7 @@ class IngresarScreen extends StatelessWidget {
                   labelText: 'Proveedor',
                   hintText: 'Nombre del proveedor',
                 ),
+                const SizedBox(height: 10),
                 CustomInputWidget(
                   maxLines: 1,
                   formProperty: 'proveedorNit',
@@ -106,6 +130,7 @@ class IngresarScreen extends StatelessWidget {
                   labelText: 'Nit',
                   hintText: 'Nit del proveedor',
                 ),
+                const SizedBox(height: 10),
                 CustomInputWidget(
                   maxLines: 1,
                   formProperty: 'categoria',
@@ -114,6 +139,7 @@ class IngresarScreen extends StatelessWidget {
                   hintText: 'Categoria de la factura',
                   validator: false,
                 ),
+                const SizedBox(height: 10),
                 CustomInputNumberWidget(
                   maxLines: 1,
                   formProperty: 'total',

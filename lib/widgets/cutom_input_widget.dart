@@ -21,7 +21,6 @@ class CustomInputWidget extends StatelessWidget {
   final String? hintText;
   final String? initialValue;
   final int maxLines;
-
   final bool? validator;
   final String formProperty;
   final Map<String, String> formValues;
