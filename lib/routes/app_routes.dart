@@ -10,6 +10,7 @@ class AppRoutes {
     AgrupadoScreen.routeName: (BuildContext context) => const AgrupadoScreen(),
     ResumenScreen.routeName: (BuildContext context) => const ResumenScreen(),
     IvaScreen.routeName: (BuildContext context) => const IvaScreen(),
+    DetalleScreen.routeName: (BuildContext context) => const DetalleScreen(),
     CategoriaScreen.routeName: (BuildContext context) =>
         const CategoriaScreen(),
     ProveedorScreen.routeName: (BuildContext context) =>

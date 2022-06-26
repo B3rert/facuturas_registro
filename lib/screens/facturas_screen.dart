@@ -1,5 +1,7 @@
 import 'package:facuturas_registro/models/models.dart';
 import 'package:facuturas_registro/providers/provider.dart';
+import 'package:facuturas_registro/screens/ingresar_screen.dart';
+import 'package:facuturas_registro/screens/screens.dart';
 import 'package:facuturas_registro/themes/app_theme.dart';
 import 'package:facuturas_registro/widgets/not_found_widget.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +49,7 @@ class FacturasScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {
-                Navigator.pushNamed(context, 'ingresar');
+                Navigator.pushNamed(context, IngresarScreen.routeName);
               },
             ),
           ],
@@ -89,7 +91,13 @@ class _Recibidas extends StatelessWidget {
                 title: Text(factura.proveedor.nombre),
                 subtitle: Text(factura.fecha),
                 trailing: Text('${factura.total}'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    DetalleScreen.routeName,
+                    arguments: factura,
+                  );
+                },
               );
             },
             separatorBuilder: (context, index) => const Divider(),
@@ -119,6 +127,13 @@ class _Emitidas extends StatelessWidget {
                 title: Text(factura.proveedor.nombre),
                 subtitle: Text(factura.fecha),
                 trailing: Text('${factura.total}'),
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    DetalleScreen.routeName,
+                    arguments: factura,
+                  );
+                },
               );
             },
             separatorBuilder: (context, index) => const Divider(),
