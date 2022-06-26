@@ -17,7 +17,7 @@ class CustomDropdownWidget extends StatefulWidget {
 }
 
 class _CustomDropdownWidgetState extends State<CustomDropdownWidget> {
-  String _chosenValue = 'Ventas';
+  String _chosenValue = 'Recibida';
 
   @override
   Widget build(BuildContext context) {

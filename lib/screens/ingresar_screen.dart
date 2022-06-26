@@ -88,7 +88,7 @@ class IngresarScreen extends StatelessWidget {
               CustomDropdownWidget(
                 formProperty: "tipo",
                 formValues: formIngresar.formValues,
-                items: const ["Ventas", "Compras"],
+                items: const ["Emitida", "Recibida"],
               ),
             ],
           ),
