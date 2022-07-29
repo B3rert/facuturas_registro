@@ -7,10 +7,21 @@ class IvaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('IvaScreen'),
-      ),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: const Center(child: Text('IVA')),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Text("IVA actualmente aplicado: No configurado."),
+              ],
+            ),
+          ),
+        ));
   }
 }
